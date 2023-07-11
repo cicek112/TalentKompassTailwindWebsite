@@ -1,25 +1,104 @@
-import logo from './logo.svg';
+
 import './App.css';
+import img1 from "./shape.png"
+import img2 from "./logo.png"
+import { useState,useEffect } from 'react';
 
 function App() {
+  let newYear=new Date("Aug 5 ,2023 ,00:00:00").getTime();
+  const [days, setDays] = useState(0)
+  const [hours, setHours] = useState(0)
+  const [minutes, setMinutes] = useState(0)
+  const [seconds, setSeconds] = useState(0)
+
+  useEffect(() => {
+      const timerId = setInterval(() => {
+          const now = new Date().getTime()
+          const distance = (newYear - now) / 1000
+          if (distance > 0) {
+              const days = Math.floor(distance / 60 / 60 / 24)
+              const hours = Math.floor(distance / 60 / 60 % 24)
+              const minutes = Math.floor((distance / 60) % 60)
+              const seconds = Math.floor(distance % 60)
+              setDays(days)
+              setHours(hours)
+              setMinutes(minutes)
+              setSeconds(seconds)
+          } else {
+              clearInterval(timerId)
+          }
+      }, 1000)
+      return () => clearInterval(timerId)
+  }, [newYear])
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='  w-full bg-[rgb(51,51,51)] h-[100vh] pl-[15%] pr-[15%] flex flex-col pb-[10%] justify-between '>
+      <div className=' flex items-center mt-3'>
+        <img src={img2} className=' w-20 mr-[-60px]' alt='logo'></img>
+        <svg preserveAspectRatio="xMidYMid meet" data-bbox="0 0 261 66.199" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 261 67" height="67" width="261" data-type="ugc" role="presentation" aria-hidden="true">
+    <g>
+        <path fill="#ffffff" d="M80.408 21.489h-4.773v-2.58h12.384v2.58h-4.774v12.47h-2.837V21.49Z"></path>
+        <path fill="#ffffff" d="m96.489 22.07-2.795 6.407h5.59L96.49 22.07Zm3.935 9.051h-7.87l-1.29 2.838H88.19l6.75-15.05h3.097l6.751 15.05h-3.095l-1.269-2.838Z"></path>
+        <path fill="#ffffff" d="M109.13 18.909v12.427h7.74v2.623h-10.578V18.91h2.838Z"></path>
+        <path fill="#ffffff" d="M130.092 33.96h-11.266V18.908h11.266v2.752h-8.45v3.461h8.149v2.645h-8.149v3.396h8.45v2.796Z"></path>
+        <path fill="#ffffff" d="M142.626 18.887h2.838v15.072h-1.763v.021l-7.912-10.17v10.15h-2.838V18.91h2.301l7.374 9.33v-9.352Z"></path>
+        <path fill="#ffffff" d="M151.957 21.489h-4.773v-2.58h12.384v2.58h-4.774v12.47h-2.837V21.49Z"></path>
+        <path fill="#ffffff" d="M172.187 33.96h-1.462l-7.933-7.418v7.396h-1.161v-15.03h1.161v6.86l7.309-6.86h1.398v.109l-7.568 7.094 8.256 7.762v.086Z"></path>
+        <path fill="#ffffff" d="M172.875 26.433c.022 3.397 2.171 6.708 6.45 6.708 4.3 0 6.471-3.31 6.471-6.708 0-3.482-2.15-6.686-6.471-6.686s-6.471 3.139-6.45 6.686Zm14.04.022c-.022 3.956-2.537 7.761-7.59 7.761-5.052 0-7.59-3.827-7.59-7.804 0-4.043 2.516-7.74 7.59-7.74s7.611 3.719 7.59 7.783Z"></path>
+        <path fill="#ffffff" d="M202.802 20.586 197.04 29.4h-.386l-5.806-8.815v13.373h-1.161V18.91h1.376l5.762 8.772 5.698-8.772h1.419v15.05h-1.14V20.586Z"></path>
+        <path fill="#ffffff" d="M208.413 19.984v7.718h5.439c5.01 0 5.01-7.718 0-7.718h-5.439Zm0 8.772v5.203h-1.161V18.91h6.6c6.536 0 6.536 9.847 0 9.847h-5.439Z"></path>
+        <path fill="#ffffff" d="m231.181 29.185-4.042-9.159-4.042 9.159h8.084Zm2.107 4.773-1.656-3.698h-8.986l-1.635 3.698h-1.247l6.751-15.05h1.269l6.751 15.05h-1.247Z"></path>
+        <path fill="#ffffff" d="M245.993 21.811c-1.096-1.763-2.859-2.021-4.558-2.043-1.763 0-4.558.645-4.558 3.053 0 1.914 2.064 2.366 4.601 2.838 2.903.56 5.913 1.076 5.913 4.322-.021 3.397-3.44 4.214-5.956 4.214-2.343 0-5.009-.968-6.17-3.268l1.031-.516c.926 1.828 3.291 2.73 5.139 2.73 1.849 0 4.795-.515 4.795-3.182.021-2.257-2.472-2.752-4.946-3.224-2.751-.538-5.568-1.097-5.568-3.87-.064-3.182 3.247-4.171 5.719-4.171 2.151 0 4.021.343 5.504 2.558l-.946.559Z"></path>
+        <path fill="#ffffff" d="M259.602 21.811c-1.096-1.763-2.859-2.021-4.558-2.043-1.763 0-4.558.645-4.558 3.053 0 1.914 2.064 2.366 4.601 2.838 2.903.56 5.913 1.076 5.913 4.322-.021 3.397-3.44 4.214-5.956 4.214-2.343 0-5.009-.968-6.17-3.268l1.031-.516c.926 1.828 3.291 2.73 5.139 2.73 1.849 0 4.795-.515 4.795-3.182.021-2.257-2.472-2.752-4.946-3.224-2.751-.538-5.568-1.097-5.568-3.87-.064-3.182 3.247-4.171 5.719-4.171 2.151 0 4.021.343 5.504 2.558l-.946.559Z"></path>
+        <path fill="#ffffff" d="M77.228 47.352h1.752c1.935 0 2.701-1.411 2.665-2.798-.037-1.326-.816-2.652-2.665-2.652h-1.752v5.45Zm6.01-2.786c.037 2.153-1.277 4.332-4.258 4.332h-3.345V40.38h3.345c2.92 0 4.222 2.08 4.258 4.185Z"></path>
+        <path fill="#ffffff" d="M93.084 48.898h-6.375v-8.516h6.375v1.557h-4.782v1.959h4.611v1.496h-4.61v1.922h4.78v1.582Z"></path>
+        <path fill="#ffffff" d="M104.23 40.393v4.878c0 2.518-1.545 3.808-3.686 3.808-2.043 0-3.784-1.241-3.784-3.808v-4.878h1.594v4.878c0 1.533.877 2.348 2.203 2.348 1.325 0 2.08-.888 2.08-2.348v-4.878h1.593Z"></path>
+        <path fill="#ffffff" d="M110.439 41.841h-2.701v-1.46h7.008v1.46h-2.701v7.057h-1.606V41.84Z"></path>
+        <path fill="#ffffff" d="M123.411 42.437c-.292-.487-1.095-.949-2.02-.949-1.192 0-1.764.498-1.764 1.131 0 .742.876.95 1.898 1.07 1.776.22 3.431.682 3.431 2.714 0 1.898-1.679 2.713-3.577 2.713-1.74 0-3.078-.535-3.711-2.093l1.339-.693c.377.937 1.362 1.35 2.397 1.35 1.009 0 1.958-.352 1.958-1.277 0-.803-.839-1.131-1.971-1.254-1.739-.206-3.345-.668-3.345-2.578 0-1.753 1.727-2.47 3.296-2.483 1.327 0 2.701.378 3.347 1.692l-1.278.657Z"></path>
+        <path fill="#ffffff" d="M136.139 47.826c-.876.864-2.007 1.266-3.235 1.266-3.164 0-4.502-2.178-4.514-4.392-.013-2.227 1.435-4.49 4.514-4.49 1.155 0 2.25.438 3.125 1.303l-1.07 1.033c-.559-.547-1.313-.802-2.055-.802-2.057 0-2.945 1.532-2.933 2.956.012 1.41.828 2.883 2.933 2.883.742 0 1.581-.304 2.141-.864l1.094 1.107Z"></path>
+        <path fill="#ffffff" d="M145.279 48.91v-3.443h-4.185v3.443h-1.606v-8.516h1.606v3.588h4.185v-3.588h1.593v8.516h-1.593Z"></path>
+        <path fill="#ffffff" d="M152.424 40.38v7.033h4.379v1.484h-5.985V40.38h1.606Z"></path>
+        <path fill="#ffffff" d="m164.191 42.169-1.581 3.626h3.163l-1.582-3.626Zm2.227 5.122h-4.453l-.73 1.606h-1.74l3.82-8.517h1.752l3.82 8.517h-1.752l-.717-1.606Z"></path>
+        <path fill="#ffffff" d="M177.65 40.37h1.606v8.528h-.997v.011l-4.478-5.754v5.743h-1.606V40.38h1.302l4.173 5.28v-5.292Z"></path>
+        <path fill="#ffffff" d="M184.649 47.352h1.752c1.934 0 2.701-1.411 2.664-2.798-.037-1.326-.815-2.652-2.664-2.652h-1.752v5.45Zm6.01-2.786c.036 2.153-1.278 4.332-4.258 4.332h-3.346V40.38h3.346c2.92 0 4.221 2.08 4.258 4.185Z"></path>
+        <path fill="url(#svgcid-gan4tbx38do8)" d="M29.574 3.524a3.523 3.523 0 1 0 7.047 0 3.523 3.523 0 0 0-7.047 0Z"></path>
+        <path fill="url(#svgcid--2b9gl3invcgc)" d="M59.153 33.097a3.523 3.523 0 1 0 7.047.002 3.523 3.523 0 0 0-7.047-.002Z"></path>
+        <path fill="url(#svgcid-blne0brgo3rd)" d="M29.579 62.676a3.523 3.523 0 1 0 7.046 0 3.523 3.523 0 0 0-7.046 0Z"></path>
+        <path fill="url(#svgcid-p42chicxnuse)" d="M0 33.102a3.524 3.524 0 1 0 7.049-.002A3.524 3.524 0 0 0 0 33.102Z"></path>
+        <path fill="url(#svgcid--l9zxpm26rnds)" d="m19.236 10.214-9.021 9.022a8.101 8.101 0 0 0 0 11.456l.348.35 2.025-2.027-.348-.349a5.242 5.242 0 0 1 0-7.405l9.022-9.021a5.243 5.243 0 0 1 7.405 0l16.81 16.808-2.027 2.027-16.809-16.81a2.374 2.374 0 0 0-3.354 0l-9.022 9.022a2.375 2.375 0 0 0 0 3.354l.35.349 10.35-10.35 2.058 2.058-16.808 16.81a8.1 8.1 0 0 0 0 11.456l9.021 9.022a8.101 8.101 0 0 0 11.456 0l.35-.35-2.026-2.025-.35.349a5.24 5.24 0 0 1-7.404 0l-9.022-9.022a5.242 5.242 0 0 1 0-7.405l16.809-16.809 2.026 2.026-16.81 16.809a2.375 2.375 0 0 0 0 3.354l9.022 9.021c.925.925 2.43.925 3.354 0l.35-.348-10.35-10.35 2.058-2.06 16.809 16.81a8.101 8.101 0 0 0 11.456 0l9.022-9.022a8.101 8.101 0 0 0 0-11.456l-.348-.349-2.026 2.025.348.349a5.243 5.243 0 0 1 0 7.405l-9.022 9.021a5.241 5.241 0 0 1-7.405 0L20.725 37.153l2.025-2.026 16.81 16.808a2.374 2.374 0 0 0 3.352 0l9.022-9.022a2.373 2.373 0 0 0 0-3.353l-.348-.35-10.35 10.35-2.059-2.057 16.81-16.81a8.102 8.102 0 0 0 0-11.456l-9.024-9.022a8.1 8.1 0 0 0-11.455 0l-.35.349 2.026 2.025.35-.348a5.243 5.243 0 0 1 7.404 0l9.022 9.021a5.242 5.242 0 0 1 0 7.405l-16.809 16.81-2.025-2.027 16.809-16.808a2.375 2.375 0 0 0 0-3.354l-9.023-9.021a2.374 2.374 0 0 0-3.353 0l-.349.348 10.35 10.35-2.059 2.059-16.808-16.809a8.078 8.078 0 0 0-5.729-2.373 8.075 8.075 0 0 0-5.728 2.373Zm5.54 22.886 8.324-8.324 8.325 8.324-8.325 8.324-8.324-8.324Z"></path>
+           
+    </g>
+        </svg>
+      </div>
+
+      <ul className='mt-20 flex text-white text-center'>
+        <li className=' text-transparent bg-clip-text bg-gradient-to-r from-[rgb(243,84,236)] to-[rgb(9,215,226)] text-2xl p-1 pl-4 pr-4 mr-2 border-white border-2'>
+          <p>{seconds}</p>
+          <p>Seconds</p>
+        </li>
+        <li className=' text-2xl p-1 pl-4 pr-4 mr-2 border-white border-2 text-transparent bg-clip-text bg-gradient-to-r from-[rgb(197,38,33)] to-[rgb(226,9,226)]'>
+          <p>{minutes}</p>
+          <p>Minutunes</p>
+        </li>
+        <li className=' text-transparent bg-clip-text bg-gradient-to-r from-[rgb(243,84,236)] to-[rgb(9,215,226)] text-2xl p-1 pl-4 pr-4 mr-2 border-white border-2'>
+          <p>{hours}</p>
+          <p>Hours</p>
+        </li>
+        <li className=' text-2xl p-1 pl-4 pr-4 mr-2 border-white border-2 text-transparent bg-clip-text bg-gradient-to-r from-[rgb(243,84,236)] to-[rgb(9,215,226)]'>
+          <p>{days}</p>
+          <p>Days</p>
+        </li>
+      </ul>
+    
+      <h1 className='text-white mt-5 text-[80px]  font-sans font-bold leading-none'>We are changing<br></br>
+        <span className='text-transparent bg-clip-text bg-gradient-to-r from-[rgb(243,84,236)] to-[rgb(9,215,226)]'>for you</span>
+      </h1>
+
+      <h3 className='text-white  mb-2 font-sans text-[25px]' >Stay tuned for new website!</h3>
+      <img src={img1} alt='img1' className=' absolute top-0 right-[1%] w-[50%]'></img>
     </div>
   );
 }
+
 
 export default App;
